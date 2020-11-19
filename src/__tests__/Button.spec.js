@@ -43,7 +43,8 @@ class Button extends React.Component {
 describe("Button component", () => {
   test("it shows the expected text when clicked (testing the wrong way!)", () => {
     const component = create(<Button text="SUBSCRIBE TO BASIC" />);
-    const instance = component.getInstance();
+    const instance = component.getInstance(); // component.getInstance메소드의 결과값을 instance라는 상수에 대입하고 있다.
+    console.log("instance", instance); // instance가 뭔지 몰라서 콘솔창에 출력해봤다. 콘솔 참조해서 보기
     expect(instance.state.text).toBe("");
   });
 });

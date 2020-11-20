@@ -42,9 +42,17 @@ class Button extends React.Component {
 
 describe("Button component", () => {
   test("it shows the expected text when clicked (testing the wrong way!)", () => {
-    const component = create(<Button text="SUBSCRIBE TO BASIC" />);
-    const instance = component.getInstance(); // component.getInstance메소드의 결과값을 instance라는 상수에 대입하고 있다.
-    console.log("instance", instance); // instance가 뭔지 몰라서 콘솔창에 출력해봤다. 콘솔 참조해서 보기
-    expect(instance.state.text).toBe("");
+    const component = create(<Button text="SUBSCRIBE TO BASIC" />); // create()메소드는 브라우저에 컴포넌트를 렌더해주는것과 거의 유사하다. 어떻게보면 cra의 App컴포넌트라고도 볼수 있다. 인자에다가 컴포넌트를 넣어주면 된다.
+    const instance = component.getInstance(); // getInstance메소드로 인해서 상수 component를 React컴포넌트형식으로 값을 반환해서 instance라는 상수에 대입하고 있다.
+    // console.log("instance ", instance); // instance를 콘솔창에 출력해 보았다. 콘솔 참조해서 보기
+    expect(instance.state.text).toBe(""); // expect메소드는 기대하다라는 뜻이고 toBe메소드는 값이 일치하는지 비교할 때 사용된다. 즉 instance.state.text의 값이 toBe메소드에 있는 ""와 일치하는지 비교해서 알려주는 것이다.
+    instance.handleClick(); // instance.handleClick() 함수가 실행이 됬는데 instance는 Button클래스 컴포넌트이니까 Button클래스 컴포넌트안에 있는 handleClick() 함수가 실행이 되어서 셋스테이트가 되었다.
+    expect(instance.state.text).toBe("PROCEED TO CHECKOUT"); // 그렇게 instance.handleClick()으로 셋스테이트가 되어서 text: "PROCEED TO CHECKOUT" 이렇게 바꿔주고 이것을 toBe메소드로 "PROCEED TO CHECKOUT"이것과 일치하는지 비교해서 알려준다.
+    // const button = instance.findByType("button"); // queryselector와 유사하다.
+    // // console.log("button ", button);
+    // button.props.onClick();
+    // expect(instance.findByType("button").props.children).toBe(
+    //   "PROCEED TO CHECKOUT"
+    // );
   });
 });
